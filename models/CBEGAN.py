@@ -78,7 +78,9 @@ class Decoder(nn.Module):
   def forward(self, x, condition_vec=None):
     x = self.decode(x)
     if self.condition:
+      # NOTE: embedding condition vector
       x_cond = self.decode_cond(condition_vec)
+      # NOTE: concatenation of z and condition vector
       x = torch.cat([x, x_cond], 1)
     x = self.dconv6(x) 
     x = self.dconv5(x) 
@@ -100,5 +102,6 @@ class D(nn.Module):
 
   def forward(self, x, condition_vec=None):
     h = self.encoder(x)
+    # NOTE injecting condition vector in Decoder
     out = self.decoder(h, condition_vec)
     return out
