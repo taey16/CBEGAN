@@ -5,4 +5,5 @@
 
 # data preperation
 - [download CelebA dataset](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html): download Align&Croppped images, Attribute Annotations, and Train/Val/Test partitions
-- run 
+- Run [parseCelebA_gender_faceCrop.py](https://github.com/taey16/CBEGAN/blob/master/preprocess/parseCelebA_gender_faceCrop.py) (take care of specifying celebRawImgRoot and list_attr_celeba.data.txt)
+- We found out **if we use celeba raw image without face-crop, the algorithm does not generate male of female images well.**
