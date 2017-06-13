@@ -190,7 +190,9 @@ for epoch in range(opt.niter):
                         (i, errD.data[0], errG.data[0], measure, M_global.avg, k, balance))
       trainLogger.flush()
     if ganIterations % opt.evalIter == 0:
-      cond = Variable(torch.FloatTensor(opt.valBatchSize, opt.cond_size, 1, 1).fill_(-1).cuda(async=True))
+      cond = Variable(
+               torch.FloatTensor(opt.valBatchSize, opt.cond_size, 1, 1).fill_(-1).cuda(async=True), 
+               volatile=True)
       for idx in range(opt.valBatchSize):
         if np.random.uniform(0,1) > 0.5:
           cond.data[idx,0,0,0] = 1
