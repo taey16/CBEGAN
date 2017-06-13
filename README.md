@@ -1,5 +1,5 @@
 # CBEGAN
-- A conditional version of the Boundary Equilibrium Generative Adversarial Networks (CBEGANs) 
+- A simple conditional version of the Boundary Equilibrium Generative Adversarial Networks (CBEGANs) 
 - M. Mirza et. al, Conditional Generative Adversarial Nets, 2014 
 - D. Berthelot et. al, BEGAN: Boundary Equilibrium Generative Adversarial Networks, 2017
 - **We generate male or female face images with latent code (i.e. z) conditioned on gender-attribute vector.**
