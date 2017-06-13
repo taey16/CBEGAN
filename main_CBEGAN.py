@@ -109,7 +109,7 @@ fixed_noise = fixed_noise.cuda()
 
 input = Variable(input)
 noise = Variable(noise)
-fixed_noise = Variable(fixed_noise)
+fixed_noise = Variable(fixed_noise, volatile=True)
 
 # get optimizer
 optimizerD = optim.Adam(netD.parameters(), lr = opt.lrD, betas = (opt.beta1, 0.999), weight_decay=opt.wd)

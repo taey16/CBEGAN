@@ -11,6 +11,7 @@
 
 # Results
 - Train with [main_CBEGAN.py](https://github.com/taey16/CBEGAN/blob/master/main_CBEGAN.py): You should check [meta parameters properly](https://github.com/taey16/CBEGAN/blob/master/main_CBEGAN.py#L23-L50) in training.
+- ```CUDA_VISIBLE_DEVICES=x python main_CBEGAN.py --dataroot /path/to/CelebA/gender_facecrop/train --exp /path/to/dir/for/checkpoints --cond_size 2```
 - Run [interpolateCond.py](https://github.com/taey16/CBEGAN/blob/master/interpolateCond.py): We generate z with uniform distribution (from -1 to 1) and then set condition vector to [1, -1] or [-1, 1]
 
 ![result](https://github.com/taey16/CBEGAN/blob/master/imgs/CBEGAN_celeb_gender.png)
