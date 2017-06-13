@@ -5,11 +5,9 @@ import cv2
 
 cascPath = './haarcascade_frontalface_default.xml'
 faceCascade = cv2.CascadeClassifier(cascPath)
-#celebRawImgRoot = '/home1/taey16/storage/CelebA/CelebA/Img/img_align_celeba/%s'
 celebRawImgRoot = '/path/to/raw/image/dir/img_align_celeba/%s'
 outputSize = 128
 
-#entries = [entry.strip() for entry in open('../Anno/list_attr_celeba.data.txt', 'r')]
 entries = [entry.strip() for entry in open('/path/to/Anno/file/list_attr_celeba.data.txt', 'r')]
 
 #import pdb; pdb.set_trace()
@@ -34,29 +32,23 @@ for entry in entries:
     # train/val/test split
     if fname_noExt < 162771: #trn
       if gender_flag == 1:
-        #outF = '/home1/taey16/storage/CelebA/CelebA/gender_facecrop/train/imgA/%s.png' % fname[:-4]
         outF = '/path/to/gender_facecrop/train/imgA/%s.png' % fname[:-4]
         cv2.imwrite(outF, outputImg)
       else:
-        #outF = '/home1/taey16/storage/CelebA/CelebA/gender_facecrop/train/imgB/%s.png' % fname[:-4]
         outF = '/path/to/gender_facecrop/train/imgB/%s.png' % fname[:-4]
         cv2.imwrite(outF, outputImg)
     elif fname_noExt >= 162771 and fname_noExt < 182638:
       if gender_flag == 1:
-        #outF = '/home1/taey16/storage/CelebA/CelebA/gender_facecrop/val/imgA/%s.png' % fname[:-4]
         outF = '/path/to/gender_facecrop/val/imgA/%s.png' % fname[:-4]
         cv2.imwrite(outF, outputImg)
       else:
-        #outF = '/home1/taey16/storage/CelebA/CelebA/gender_facecrop/val/imgB/%s.png' % fname[:-4]
         outF = '/path/to/gender_facecrop/val/imgB/%s.png' % fname[:-4]
         cv2.imwrite(outF, outputImg)
     else:
       if gender_flag == 1:
-        #outF = '/home1/taey16/storage/CelebA/CelebA/gender_facecrop/test/imgA/%s.png' % fname[:-4]
         outF = '/path/to/gender_facecrop/test/imgA/%s.png' % fname[:-4]
         cv2.imwrite(outF, outputImg)
       else:
-        #outF = '/home1/taey16/storage/CelebA/CelebA/gender_facecrop/test/imgB/%s.png' % fname[:-4]
         outF = '/path/to/gender_facecrop/test/imgB/%s.png' % fname[:-4]
         cv2.imwrite(outF, outputImg)
     print('End of %s, gender: %d' % (outF, gender_flag))
