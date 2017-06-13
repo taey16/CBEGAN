@@ -129,12 +129,13 @@ for epoch in range(opt.niter):
     input.data.resize_as_(input_cpu).copy_(input_cpu)
     # NOTE generate condition vector whose value is 1 or -1 (one-hot)
     cond = Variable(torch.FloatTensor(input_cpu.size(0), opt.cond_size, 1, 1).fill_(-1).cuda(async=True))
-    if condition[idx] == 0: 
-      cond.data[:,0,0,0].fill_(1)
-      #cond.data[:,1,0,0].fill_(-1)
-    else:
-      cond.data[:,0,0,0].fill_(-1)
-      #cond.data[:,1,0,0].fill_(1)
+    for idx in range(batch_size):
+      if condition[idx] == 0: 
+        cond.data[idx,0,0,0] = 1
+        #cond.data[idx,1,0,0] = -1
+      else:
+        cond.data[idx,1,0,0] = 1
+        #cond.data[idx,0,0,0] = -1
 
     # max_D first
     for p in netD.parameters(): 
@@ -189,13 +190,14 @@ for epoch in range(opt.niter):
                         (i, errD.data[0], errG.data[0], measure, M_global.avg, k, balance))
       trainLogger.flush()
     if ganIterations % opt.evalIter == 0:
-      condition = Variable(torch.FloatTensor(opt.valBatchSize, opt.cond_size, 1, 1).fill_(-1).cuda(async=True))
-      if condition[idx] == 0: 
-        cond.data[:,0,0,0].fill_(1)
-        #cond.data[:,1,0,0].fill_(-1)
-      else:
-        #cond.data[:,0,0,0].fill_(-1)
-        cond.data[:,1,0,0].fill_(1)
+      cond = Variable(torch.FloatTensor(opt.valBatchSize, opt.cond_size, 1, 1).fill_(-1).cuda(async=True))
+      for idx in range(opt.valBatchSize):
+        if np.random.uniform(0,1) > 0.5:
+          cond.data[idx,0,0,0] = 1
+          #cond.data[idx,1,0,0] = -1
+        else:
+          cond.data[idx,1,0,0] = 1
+          #cond.data[idx,0,0,0] = -1
       fake = netG(fixed_noise, cond)
       recon_fake = netD(fake, cond)
       vutils.save_image(fake.data, '%s/epoch_%08d_iter%08d_fake.png' % \
