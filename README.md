@@ -11,4 +11,5 @@
 
 # Results
 - Run [interpolateCond.py](https://github.com/taey16/CBEGAN/blob/master/interpolateCond.py): We generate z with uniform distribution (from -1 to 1) and then set condition vector to [1, -1] or [-1, 1]
+
 ![result](https://github.com/taey16/CBEGAN/blob/master/imgs/CBEGAN_celeb_gender.png)
